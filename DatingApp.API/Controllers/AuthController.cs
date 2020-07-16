@@ -13,7 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace DatingApp.API.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
     {
@@ -31,7 +31,7 @@ namespace DatingApp.API.Controllers
             userForRegisterDto.UserName = userForRegisterDto.UserName.ToLower();
             if (await _repo.UserExists(userForRegisterDto.UserName))
             {
-                return BadRequest("Username already exists");
+                return BadRequest("UserName already exists");
             }
 
             var userToCreate = new User

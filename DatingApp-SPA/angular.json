@@ -24,8 +24,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              ""
+              "src/styles.css"
             ],
             "scripts": []
           },
@@ -120,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "DatingApp-SPA"
+    }
+  },
+  "defaultProject": "DatingApp-SPA",
+  "cli": {
+    "analytics": "8213f0c9-4c77-4789-ae46-c7c37f702037"
+  }
 }
