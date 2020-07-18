@@ -1,8 +1,8 @@
 using System;
 
-namespace DatingApp.API.Dtos
+namespace DatingApp.API.Dtos 
 {
-    public class UserForListDto
+    public class UserForListDto 
     {
         public int Id { get; set; }
         public string UserName { get; set; }
@@ -13,7 +13,6 @@ namespace DatingApp.API.Dtos
         public DateTime LastActive { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
-        public string PhotUrl { get; set; }
-        
+        public string PhotoUrl { get; set; }
     }
 }
