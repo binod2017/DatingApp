@@ -1,4 +1,4 @@
-import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Compiler } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -27,16 +27,12 @@ import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { AlertifyService } from './services/Alertify.service';
 import { AuthGuard } from './guards/auth.guard';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { MemberEditResolver } from './resolvers/member-edit.resolver';
+import { PreventUnsavedChanges } from './guards/prevent-unsaved-changes.guard';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
-}
-
-export class CustomHammerConfig extends HammerGestureConfig {
-   overrides = {
-      pinch: {enable: false },
-      rotate: {enable: false }
-   };
 }
 
 @NgModule({
@@ -50,7 +46,8 @@ export class CustomHammerConfig extends HammerGestureConfig {
       ListsComponent,
       MessagesComponent,
       MemberCardComponent,
-      MemberDetailComponent
+      MemberDetailComponent,
+      MemberEditComponent
    ],
    imports: [
       BrowserModule,
@@ -77,7 +74,8 @@ export class CustomHammerConfig extends HammerGestureConfig {
       UserService,
       MemberDetailResolver,
       MemberListResolver,
-      {provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
+      MemberEditResolver,
+      PreventUnsavedChanges
    ],
    bootstrap: [
       AppComponent
