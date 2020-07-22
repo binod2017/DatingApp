@@ -12,6 +12,7 @@ import { UserService } from 'src/app/services/users.service';
   styleUrls: ['./photo-editor.component.css']
 })
 export class PhotoEditorComponent implements OnInit {
+  
   uploader: FileUploader;
   hasBaseDropZoneOver: false;
   baseUrl = environment.apiUrl;
