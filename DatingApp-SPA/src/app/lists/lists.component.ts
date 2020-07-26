@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Pagination, PaginatedResult } from '../model/pagination';
-import { User } from '../model/user';
-import { UserService } from '../services/users.service';
-import { AuthService } from '../services/auth.service';
-import { AlertifyService } from '../services/Alertify.service';
+import { User } from '../_models/user';
+import { Pagination, PaginatedResult } from '../_models/pagination';
+import { AuthService } from '../_services/auth.service';
+import { UserService } from '../_services/user.service';
 import { ActivatedRoute } from '@angular/router';
+import { AlertifyService } from '../_services/alertify.service';
 
 @Component({
   selector: 'app-lists',
@@ -16,8 +16,8 @@ export class ListsComponent implements OnInit {
   pagination: Pagination;
   likesParam: string;
 
-  // tslint:disable-next-line: max-line-length
-  constructor(private userService: UserService, private authService: AuthService, private alertify: AlertifyService, private route: ActivatedRoute) { }
+  constructor(private authService: AuthService, private userService: UserService,
+    private route: ActivatedRoute, private alertify: AlertifyService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -28,18 +28,20 @@ export class ListsComponent implements OnInit {
   }
 
   loadUsers() {
-    this.userService.getUsers(this.pagination.currentPage, this.pagination.itemsPerPage, null, this.likesParam)
-      .subscribe((res: PaginatedResult<User[]>) => {
-        this.users = res.result;
-        this.pagination = res.pagination;
-      }, error => {
-        this.alertify.error(error);
-      }
-      );
+    this.userService
+    .getUsers(this.pagination.currentPage, this.pagination.itemsPerPage, null, this.likesParam)
+    .subscribe(
+      (res: PaginatedResult<User[]>) => {
+      this.users = res.result;
+      this.pagination = res.pagination;
+    }, error => {
+      this.alertify.error(error);
+    });
   }
 
   pageChanged(event: any): void {
     this.pagination.currentPage = event.page;
     this.loadUsers();
   }
+
 }
